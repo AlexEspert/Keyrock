@@ -227,13 +227,13 @@ ENV IDM_HEADLESS=$HEADLESS
 
 # hadolint ignore=DL3018
 # hadolint ignore=DL3009
-RUN \
-    if [ "${PACKAGE_MANAGER}" = "apt"  ]; then \
-        apt-get update; \
-        apt-get install -y --no-install-recommends openssl; \
-    elif [ "${PACKAGE_MANAGER}" = "apk"  ]; then \
-        apk add --no-cache ca-certificates bash openssl; \
-    fi
+#RUN \
+#    if [ "${PACKAGE_MANAGER}" = "apt"  ]; then \
+#        apt-get update; \
+#        apt-get install -y --no-install-recommends openssl; \
+#    elif [ "${PACKAGE_MANAGER}" = "apk"  ]; then \
+#        apk add --no-cache ca-certificates bash openssl; \
+#    fi
 
 LABEL "maintainer"="FIWARE Identity Manager Team. DIT-UPM"
 LABEL "description"="OAuth2-based authentication of users and devices, user profile management, Single Sign-On (SSO) and Identity Federation across multiple administration domains."
@@ -253,7 +253,7 @@ LABEL "org.nodejs.version"=${NODE_VERSION}
 USER ${USER}
 ENV NODE_ENV=production
 # Ports used by application
-EXPOSE ${IDM_PORT:-3000}
+#EXPOSE ${IDM_PORT:-3000}
 CMD ["npm", "start"]
 HEALTHCHECK  --interval=30s --timeout=3s --start-period=60s \
   CMD ["npm", "run", "healthcheck"]
